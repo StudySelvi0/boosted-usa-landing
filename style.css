@@ -152,3 +152,98 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.looking_for_section {
+    width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; 
+    margin-bottom: 80px; 
+}
+
+.text_block_above_photos_in_looking_for {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+    margin-bottom: 70px; 
+}
+
+.title_in_looking_for {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 36px;
+    color: #000000;
+    margin-bottom: 20px; 
+}
+
+.paragraph_in_looking_for {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px; 
+    color: #000000;
+}
+
+.grey_line_in_looking_for {
+    width: 130px; 
+    height: 2px;  
+    background-color: #CCCCCC; 
+    margin-top: 40px; 
+}
+
+.two_photos_grid_block_in_looking_for {
+    width: 1200px;
+    display: grid; 
+    grid-template-columns: 580px 580px; 
+    justify-content: space-between; 
+}
+
+.left_photo_board_in_looking_for, 
+.right_photo_scooter_in_looking_for {
+    width: 580px;
+    height: 580px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left_photo_board_in_looking_for {
+    background-image: url('board.jpg'); 
+}
+
+.right_photo_scooter_in_looking_for {
+    background-image: url('scooter.jpg'); 
+}
+
+.lightning_icon_in_looking_for {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.photo_title_in_looking_for {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.photo_subtitle_in_looking_for {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px; 
+    color: #FFFFFF;
+    text-align: center;
+}
+
