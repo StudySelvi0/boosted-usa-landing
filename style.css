@@ -320,3 +320,116 @@ body {
 .red_button_in_scaters:hover {
     background-color: #D34330;
 }
+
+.collagge_section {
+    width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    margin-top: 45px;
+}
+
+.top_row_in_collagge {
+    width: 1200px;
+    display: flex;
+    justify-content: flex-start; 
+    gap: 30px; 
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.top_photo_in_collagge {
+    width: 380px; 
+    height: 380px;
+    object-fit: cover; 
+}
+
+.text_block_in_collagge {
+    width: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title_in_collagge {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.paragraph_in_collagge {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 23px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.red_button_in_collagge {
+    width: 101px;
+    height: 33px;
+    background-color: #FF5A45;
+    border-radius: 17px; 
+    
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-decoration: none;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.red_button_in_collagge:hover {
+    background-color: #D34330;
+}
+
+
+.bottom_row_in_collagge {
+    width: 1440px;
+    display: flex;
+}
+
+.bottom_photo_in_collagge {
+    width: 480px;
+    height: 480px;
+    background-size: cover;
+    background-position: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;    
+}
+
+
+.photo3_bg_in_collagge { background-image: url('photo3.jpg'); }
+.photo4_bg_in_collagge { background-image: url('photo4.jpg'); }
+.photo5_bg_in_collagge { background-image: url('photo5.jpg'); }
+
+.photo_title_in_collagge {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.photo_subtitle_in_collagge {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 23px;
+    color: #FFFFFF;
+    text-align: center;
+}
