@@ -1,7 +1,7 @@
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; 
+    align-items: center;   
     margin: 0;
     padding: 0;
 }
@@ -11,7 +11,7 @@ body {
     height: 29px;
     background-color: #000000;
     color: #FBFBFB;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
@@ -19,4 +19,54 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.top_menu_under_cap {
+    display: flex;
+    width: 1440px;
+    height: 66px;
+}
+
+.logotype_block_in_top_menu_under_cap {
+    width: 182.5px;
+    height: 66px;
+    margin-right: 102px;
+}
+
+.logotype_in_top_menu_under_cap {
+    margin: 15px 11px;
+    width: 160px;
+    height: 36px;
+}
+
+.middle_block_in_top_menu_under_cap {
+    width: 736px; 
+    height: 66px;
+    margin-right: 348px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.middle_block_in_top_menu_under_cap a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none; 
+    color: #000000;
+}
+
+.middle_block_in_top_menu_under_cap a:hover {
+    color: #FF4A32; 
+}
+
+.the_last_block_in_top_menu_under_cap {
+    width: 51px;
+    height: 66px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
 }
