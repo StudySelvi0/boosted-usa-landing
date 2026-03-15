@@ -556,6 +556,7 @@ body {
 }
 
 .black_price_in_accessories {
+    display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -564,6 +565,7 @@ body {
 }
 
 .red_price_in_accessories {
+    display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -576,6 +578,7 @@ body {
 }
 
 .sold_out_in_accessories {
+    display: inline-block;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
