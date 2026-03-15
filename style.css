@@ -582,3 +582,143 @@ body {
     line-height: 18px;
     color: #0000004D;
 }
+
+.black_features_block_in_final {
+    width: 1440px;
+    height: 308px;
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.features_container_in_final {
+    width: 1400px;
+    display: flex;
+    justify-content: space-around; 
+}
+
+.feature_item_in_final {
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature_icon_in_final {
+    width: 87px;
+    height: 87px;
+    margin-bottom: 20px;
+}
+
+.feature_title_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 36px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.feature_desc_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22.5px; 
+    color: #FFFFFF;
+}
+
+
+.footer_section_in_final {
+    width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding-top: 50px; 
+}
+
+.footer_top_container_in_final {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.footer_logo_col_in_final {
+    width: 380px; 
+}
+
+.footer_explore_col_in_final {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer_about_col_in_final {
+    width: 380px;
+}
+
+.footer_col_title_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.footer_link_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 21px;
+    color: #000000;
+    text-decoration: none;
+}
+
+.footer_link_in_final:hover {
+    color: #FF5A45; 
+}
+
+.footer_text_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 21px;
+    color: #000000;
+}
+
+
+.footer_bottom_container_in_final {
+    width: 1200px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #EAEAEA; 
+}
+
+.copyright_text_in_final {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 19px;
+    color: #000000;
+}
+
+.red_text_in_final {
+    color: #FF2121; 
+    cursor: pointer;
+}
+
+.payment_cards_in_final {
+    display: flex;
+    gap: 8px; 
+    align-items: center;
+}
+
+.card_icon_in_final {
+    height: 20px; 
+}
