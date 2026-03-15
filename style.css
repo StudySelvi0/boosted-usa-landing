@@ -70,3 +70,68 @@ body {
     justify-content: space-between; 
     align-items: center; 
 }
+
+.hero_section {
+    width: 1440px;
+    height: 810px;
+    background-image: url('Rectangle.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+}
+
+.hero_content {
+    width: 635px;
+    height: 160px;
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main_text_in_photo {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 51px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.sub_text_in_photo {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 19px;
+    letter-spacing: 1px;
+    color: #000000;
+    margin-bottom: 35px;
+}
+
+.buttons_block_in_photo {
+    width: 414px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.red_button_in_photo {
+    width: 201px;
+    height: 45px; 
+    background-color: #FF5A45; 
+    border-radius: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.red_button_in_photo:hover {
+    background-color: #D34330;
+}
