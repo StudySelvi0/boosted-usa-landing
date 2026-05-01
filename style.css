@@ -119,7 +119,7 @@ body {
 .buttons_block_in_photo {
     width: 414px;
     display: flex;
-    margin-top: 22px;
+    margin-top: 10px;
     justify-content: space-between;
 }
 
