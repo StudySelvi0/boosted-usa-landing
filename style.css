@@ -8,17 +8,19 @@ body {
 
 .top_cap {
     width: 1440px; 
-    height: 29px;
     background-color: #000000;
+    overflow: hidden; 
+}
+
+.top_cap_text {
+    width: 291px;
     color: #FBFBFB;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
     letter-spacing: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 7px 580px 7px 569px;
 }
 
 .top_menu_under_cap {
