@@ -7,7 +7,7 @@ body {
 }
 
 .top_cap {
-    width: 1440px; 
+    width: 1440px;
     height: 29px;
     background-color: #000000;
     color: #FBFBFB;
@@ -17,8 +17,9 @@ body {
     line-height: 15px;
     letter-spacing: 2px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: center; 
+    padding-left: 573.5px; 
+    box-sizing: border-box; 
 }
 
 .top_menu_under_cap {
@@ -30,7 +31,7 @@ body {
 .logotype_block_in_top_menu_under_cap {
     width: 182.5px;
     height: 66px;
-    margin-right: 102px;
+    margin-right: 101.5px;
 }
 
 .logotype_in_top_menu_under_cap {
@@ -40,12 +41,12 @@ body {
 }
 
 .middle_block_in_top_menu_under_cap {
-    width: 736px; 
     height: 66px;
-    margin-right: 348px;
+    margin-left: 12px;
+    margin-right: 0;
     display: flex;
-    justify-content: space-between; 
     align-items: center; 
+    gap: 25px;
 }
 
 .middle_block_in_top_menu_under_cap a {
@@ -53,7 +54,7 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
-    letter-spacing: 1px;
+    letter-spacing: 0.9px;
     text-transform: uppercase;
     text-decoration: none; 
     color: #000000;
@@ -64,11 +65,12 @@ body {
 }
 
 .the_last_block_in_top_menu_under_cap {
+    margin-left: 390px;
     width: 51px;
     height: 66px;
     display: flex;
-    justify-content: space-between; 
     align-items: center; 
+    gap: 10px;
 }
 
 .hero_section {
@@ -84,19 +86,20 @@ body {
 .hero_content {
     width: 635px;
     height: 160px;
-    margin-top: 45px;
+    margin-top: 41.5px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .main_text_in_photo {
+    padding-top: 10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 44px;
     line-height: 51px;
     color: #000000;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .sub_text_in_photo {
@@ -106,7 +109,7 @@ body {
     line-height: 19px;
     letter-spacing: 1px;
     color: #000000;
-    margin-bottom: 35px;
+    margin-bottom: 21px;
 }
 
 .buttons_block_in_photo {
@@ -117,7 +120,7 @@ body {
 
 .red_button_in_photo {
     width: 201px;
-    height: 45px; 
+    height: 33px; 
     background-color: #FF5A45; 
     border-radius: 25px;
     font-family: 'Roboto', sans-serif;
@@ -148,9 +151,14 @@ body {
 .logos_block_in_line {
     width: 1200px;
     height: 48px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
+    justify-items: center;
+}
+
+.logos_block_in_line > * {
+    transform: translateY(-5px);
 }
 
 .looking_for_section {
@@ -158,7 +166,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 80px; 
+    margin-top: 52px; 
     margin-bottom: 20px; 
 }
 
@@ -168,7 +176,7 @@ body {
     flex-direction: column;
     align-items: center; 
     text-align: center; 
-    margin-bottom: 70px; 
+    margin-bottom: 41px; 
 }
 
 .title_in_looking_for {
@@ -184,22 +192,26 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 15px;
-    line-height: 19px; 
+    line-height: 18.75px;
     color: #000000;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .grey_line_in_looking_for {
-    width: 130px; 
+    width: 70px; 
     height: 2px;  
     background-color: #CCCCCC; 
-    margin-top: 40px; 
+    margin-top: 25px; 
 }
 
 .two_photos_grid_block_in_looking_for {
     width: 1200px;
+    padding-left: 20px;
     display: grid; 
     grid-template-columns: 580px 580px; 
-    justify-content: space-between; 
+    gap: 20px;
 }
 
 .left_photo_board_in_looking_for, 
@@ -225,7 +237,7 @@ body {
 .lightning_icon_in_looking_for {
     width: 50px;
     height: 50px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .photo_title_in_looking_for {
@@ -234,11 +246,12 @@ body {
     font-size: 25px;
     line-height: 30px;
     color: #FFFFFF;
-    margin-bottom: 5px;
+    margin-bottom: 32px;
     text-align: center;
 }
 
 .photo_subtitle_in_looking_for {
+    margin-top: -16px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
@@ -280,6 +293,7 @@ body {
 }
 
 .main_title_in_scaters {
+    padding-left: 5.5px;
     font-family: 'Roboto', sans-serif;
     font-weight: 700; 
     font-size: 45px;
@@ -295,12 +309,12 @@ body {
     line-height: 19px;
     letter-spacing: 1px;
     color: #000000;
-    margin-bottom: 30px; 
+    margin-bottom: 21px; 
 }
 
 .red_button_in_scaters {
     width: 201px;
-    height: 45px; 
+    height: 33px; 
     background-color: #FF5A45; 
     border-radius: 25px;
     
@@ -333,10 +347,26 @@ body {
 .top_row_in_collagge {
     width: 1200px;
     display: flex;
-    justify-content: flex-start; 
     gap: 30px; 
     align-items: center;
     margin-bottom: 45px;
+
+}
+
+.top_row_in_collagge {
+    width: 1200px;
+    display: flex;
+    gap: 30px; 
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.top_row_in_collagge > :first-child {
+    transform: translateX(10px);
+}
+
+.top_row_in_collagge > :last-child {
+    margin-left: 10px;
 }
 
 .top_photo_in_collagge {
@@ -366,7 +396,7 @@ body {
     font-size: 15px;
     line-height: 23px;
     color: #000000;
-    margin-bottom: 30px;
+    margin-bottom: 18px;
 }
 
 .red_button_in_collagge {
@@ -421,7 +451,7 @@ body {
     font-size: 25px;
     line-height: 30px;
     color: #FFFFFF;
-    margin-bottom: 5px;
+    margin-bottom: 14px;
     text-align: center;
 }
 
@@ -446,14 +476,16 @@ body {
     width: 1440px;
     display: flex;
     justify-content: center;
-    margin-bottom: 80px;
+    margin-bottom: 73px;
 }
 
 .video_container_in_youtube {
     width: 1200px;
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
+    margin-top: 10px;
+    margin-right: 40px;
 }
 
 .video_preview_in_youtube {
@@ -468,7 +500,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 65px;
 }
 
 .title_block_in_accessories {
@@ -476,10 +508,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 5px;
 }
 
 .title_text_in_accessories {
+    margin-top: -10px;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 32px;
@@ -488,10 +521,10 @@ body {
 }
 
 .grey_line_in_accessories {
-    width: 130px;
-    height: 2px;
-    background-color: #CCCCCC;
-    margin-top: 30px;
+    width: 70px; 
+    height: 2px;  
+    background-color: #CCCCCC; 
+    margin-top: 25px; 
 }
 
 .slider_container_in_accessories {
@@ -506,6 +539,7 @@ body {
 .left_arrow_in_accessories {
     position: absolute;
     left: 10px;
+    bottom: 96px;
     width: 44px;
     height: 44px;
     cursor: pointer;
@@ -514,6 +548,7 @@ body {
 .right_arrow_in_accessories {
     position: absolute;
     right: 10px;
+    bottom: 96px;
     width: 44px;
     height: 44px;
     cursor: pointer;
@@ -523,6 +558,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-top: 20px;
 }
 
 .item_card_in_accessories {
@@ -612,7 +648,8 @@ body {
 .feature_icon_in_final {
     width: 87px;
     height: 87px;
-    margin-bottom: 20px;
+    margin-top: -30px;
+    margin-bottom: 5px;
 }
 
 .feature_title_in_final {
@@ -621,7 +658,7 @@ body {
     font-size: 31px;
     line-height: 36px;
     color: #FFFFFF;
-    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .feature_desc_in_final {
@@ -630,8 +667,8 @@ body {
     font-size: 15px;
     line-height: 22.5px; 
     color: #FFFFFF;
+    margin-top: 15px;
 }
-
 
 .footer_section_in_final {
     width: 1440px;
@@ -643,6 +680,7 @@ body {
 }
 
 .footer_top_container_in_final {
+
     width: 1200px;
     display: flex;
     justify-content: space-between;
@@ -651,12 +689,14 @@ body {
 
 .footer_logo_col_in_final {
     width: 380px; 
+    padding-left: 10px;
 }
 
 .footer_explore_col_in_final {
     width: 380px;
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
 }
 
 .footer_about_col_in_final {
@@ -669,7 +709,8 @@ body {
     font-size: 20px;
     line-height: 30px;
     color: #000000;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    margin-right: 60px
 }
 
 .footer_link_in_final {
@@ -723,5 +764,7 @@ body {
 }
 
 .card_icon_in_final {
+    margin-top: 8px;
+    margin-right: 5px;
     height: 20px; 
 }
