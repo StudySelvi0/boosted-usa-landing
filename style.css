@@ -7,9 +7,14 @@ body {
 }
 
 .top_cap {
-    width: 1440px;
+    width: 1440px; 
     height: 29px;
     background-color: #000000;
+    overflow: hidden; 
+}
+
+.top_cap_text {
+    width: 291px;
     color: #FBFBFB;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -17,9 +22,8 @@ body {
     line-height: 15px;
     letter-spacing: 2px;
     display: flex;
-    align-items: center; 
-    padding-left: 573.5px; 
-    box-sizing: border-box; 
+    justify-content: center;
+    align-items: center;
 }
 
 .top_menu_under_cap {
@@ -109,12 +113,13 @@ body {
     line-height: 19px;
     letter-spacing: 1px;
     color: #000000;
-    margin-bottom: 21px;
+    margin-bottom: 35px;
 }
 
 .buttons_block_in_photo {
     width: 414px;
     display: flex;
+    margin-top: 22px;
     justify-content: space-between;
 }
 
