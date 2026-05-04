@@ -653,8 +653,8 @@ body {
 .feature_icon_in_final {
     width: 87px;
     height: 87px;
-    margin-top: -30px;
-    margin-bottom: 5px;
+    position: relative;
+    top: -30px;
 }
 
 .feature_title_in_final {
@@ -663,7 +663,8 @@ body {
     font-size: 31px;
     line-height: 36px;
     color: #FFFFFF;
-    margin-top: 5px;
+    position: relative;
+    top: 0px;
 }
 
 .feature_desc_in_final {
@@ -672,7 +673,8 @@ body {
     font-size: 15px;
     line-height: 22.5px; 
     color: #FFFFFF;
-    margin-top: 15px;
+    position: relative;
+    top: 15px;
 }
 
 .footer_section_in_final {
