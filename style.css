@@ -1122,6 +1122,7 @@ body {
 
 .feature_item_in_final:nth-child(even):hover .feature_icon_in_final {
     animation: shadowPulseWhite 1.5s ease-in infinite;
+}
 .feature_item_in_final:nth-child(odd):hover .feature_icon_in_final {
     animation: shadowPulseOrange 1.5s ease-in infinite;
 }
