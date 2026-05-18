@@ -1,18 +1,75 @@
-console.log("--- Скрипт успешно подключен и начал работу! ---");
+const searchInput = document.getElementById('searchInput');
+const categorySelect = document.getElementById('categorySelect');
+const sortSelect = document.getElementById('sortSelect');
+const container = document.getElementById('catalog-container');
+
+const paginationContainer = document.createElement('div');
+paginationContainer.style.cssText = 'width: 100%; display: flex; justify-content: center; gap: 10px; margin-top: 30px; margin-bottom: 50px;';
+container.after(paginationContainer);
+
+let currentPage = 1;
+const limitPerPage = 6;
+let currentProducts = [];
+
+async function loadCategories() {
+    try {
+        const res = await fetch('http://localhost:3000/products');
+        const data = await res.json();
+        
+        const categoriesSet = new Set(data.map(item => item.category));
+
+        if (categorySelect) {
+            categorySelect.innerHTML = '<option value="All">Все категории</option>';
+            categoriesSet.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
+    } catch (error) {
+        console.error('Ошибка загрузки категорий:', error);
+    }
+}
+async function fetchProducts() {
+    try {
+        let url = new URL('http://localhost:3000/products');
+
+        const query = searchInput ? searchInput.value.trim() : '';
+        if (query) url.searchParams.append('q', query);
+
+        const category = categorySelect ? categorySelect.value : 'All';
+        if (category !== 'All') url.searchParams.append('category', category);
+
+        const sortMode = sortSelect ? sortSelect.value : 'default';
+        if (sortMode === 'priceAsc') { url.searchParams.append('_sort', 'price'); url.searchParams.append('_order', 'asc'); }
+        else if (sortMode === 'priceDesc') { url.searchParams.append('_sort', 'price'); url.searchParams.append('_order', 'desc'); }
+        else if (sortMode === 'nameAsc') { url.searchParams.append('_sort', 'name'); url.searchParams.append('_order', 'asc'); }
+        else if (sortMode === 'ratingDesc') { url.searchParams.append('_sort', 'rating'); url.searchParams.append('_order', 'desc'); }
+
+        url.searchParams.append('_page', currentPage);
+        url.searchParams.append('_limit', limitPerPage);
+
+        const response = await fetch(url);
+        
+        const totalCount = response.headers.get('X-Total-Count');
+        const totalPages = Math.ceil(totalCount / limitPerPage);
+
+        const products = await response.json();
+        currentProducts = products;
+        
+        renderCatalog(products);
+        renderPagination(totalPages);
+
+    } catch (error) {
+        console.error("Ошибка при запросе к серверу:", error);
+    }
+}
 
 function renderCatalog(items) {
-    console.log("5. Функция отрисовки запущена. Массив товаров:", items);
-    
-    const container = document.getElementById('catalog-container');
-    console.log("6. Ищем контейнер catalog-container. Нашли?", container);
-
-    if (!container) {
-        console.error("КРИТИЧЕСКАЯ ОШИБКА: Контейнер не найден! Скрипт остановлен.");
-        return;
-    }
+    if (!container) return;
 
     if (!items || items.length === 0) {
-        console.log("-> Сервер вернул пустой массив. Рисуем надпись 'Товары не найдены'.");
         container.innerHTML = `
             <div style="width: 100%; text-align: center; padding: 50px 0;">
                 <h2 style="color: #FF5A45; font-family: 'Roboto', sans-serif;">Товары не найдены</h2>
@@ -39,68 +96,87 @@ function renderCatalog(items) {
         }
 
         htmlContent += `
-            <div class="item_card_in_accessories">
+            <div class="item_card_in_accessories" style="position: relative; padding-bottom: 50px; height: 320px;">
                 <img src="${product.image}" alt="${product.name}" class="item_photo_in_accessories" style="object-fit: contain;">
                 <div class="item_name_in_accessories">${product.name}</div>
-                <div class="price_box_in_accessories">
-                    ${priceHTML}
+                <div class="price_box_in_accessories">${priceHTML}</div>
+                
+                <div style="position: absolute; bottom: 10px; display: flex; gap: 10px; width: 100%; justify-content: center;">
+                    <button onclick="addToCart(${product.id})" style="background: #FF5A45; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-family: 'Roboto'; font-weight: 700; font-size: 12px; transition: 0.3s;">В корзину</button>
+                    <button onclick="addToFav(${product.id})" style="background: #333; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-family: 'Roboto'; font-size: 12px; transition: 0.3s;">❤</button>
                 </div>
             </div>
         `;
     });
 
     container.innerHTML = htmlContent;
-    console.log("7. Отрисовка карточек успешно завершена!");
 }
 
-const searchInput = document.getElementById('searchInput');
-const categorySelect = document.getElementById('categorySelect');
-const sortSelect = document.getElementById('sortSelect');
+function renderPagination(totalPages) {
+    paginationContainer.innerHTML = '';
+    
+    if (totalPages <= 1) return;
 
-async function fetchProducts() {
-    console.log("1. Начинаем запрос к серверу...");
-    try {
-        let url = new URL('http://localhost:3000/products');
-
-        const query = searchInput ? searchInput.value.trim() : '';
-        if (query) url.searchParams.append('q', query);
-
-        const category = categorySelect ? categorySelect.value : 'All';
-        if (category !== 'All') url.searchParams.append('category', category);
-
-        const sortMode = sortSelect ? sortSelect.value : 'default';
-        if (sortMode === 'priceAsc') {
-            url.searchParams.append('_sort', 'price');
-            url.searchParams.append('_order', 'asc');
-        } else if (sortMode === 'priceDesc') {
-            url.searchParams.append('_sort', 'price');
-            url.searchParams.append('_order', 'desc');
-        } else if (sortMode === 'nameAsc') {
-            url.searchParams.append('_sort', 'name');
-            url.searchParams.append('_order', 'asc');
-        } else if (sortMode === 'ratingDesc') {
-            url.searchParams.append('_sort', 'rating');
-            url.searchParams.append('_order', 'desc');
-        }
-
-        console.log("2. Сформирована ссылка:", url.toString());
-
-        const response = await fetch(url);
-        console.log("3. Ответ от сервера получен. HTTP Статус:", response.status);
-
-        const productsFromServer = await response.json();
-        console.log("4. Данные расшифрованы (JSON -> JS массив). Передаем в отрисовку.");
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.style.cssText = `
+            padding: 8px 16px; 
+            border: 2px solid #FF5A45; 
+            background-color: ${i === currentPage ? '#FF5A45' : 'white'}; 
+            color: ${i === currentPage ? 'white' : '#FF5A45'}; 
+            cursor: pointer; 
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        `;
         
-        renderCatalog(productsFromServer);
-        
-    } catch (error) {
-        console.error("ОШИБКА ПРИ ЗАПРОСЕ (СЕРВЕР УПАЛ ИЛИ НЕ ЗАПУЩЕН):", error);
+        btn.onclick = () => {
+            currentPage = i;
+            fetchProducts();
+        };
+        paginationContainer.appendChild(btn);
     }
 }
 
-if (searchInput) searchInput.addEventListener('input', fetchProducts);
-if (categorySelect) categorySelect.addEventListener('change', fetchProducts);
-if (sortSelect) sortSelect.addEventListener('change', fetchProducts);
+async function addToCart(id) {
+    const product = currentProducts.find(p => String(p.id) === String(id));
+    if (!product || !product.inStock) {
+        alert("Этот товар распродан!");
+        return;
+    }
 
-console.log("0. Запускаем первичную загрузку товаров...");
-fetchProducts();
+    try {
+        const cartItem = { ...product, quantity: 1, id: Date.now().toString() }; 
+        await fetch('http://localhost:3000/cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cartItem)
+        });
+        alert('✅ Товар добавлен в корзину!');
+    } catch (error) {
+        console.error('Ошибка добавления в корзину:', error);
+    }
+}
+
+async function addToFav(id) {
+    const product = currentProducts.find(p => String(p.id) === String(id));
+    if (!product) return;
+
+    try {
+        await fetch('http://localhost:3000/favorites', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...product, id: Date.now().toString() })
+        });
+        alert('❤ Товар добавлен в избранное!');
+    } catch (error) {
+        console.error('Ошибка добавления в избранное:', error);
+    }
+}
+
+if (searchInput) searchInput.addEventListener('input', () => { currentPage = 1; fetchProducts(); });
+if (categorySelect) categorySelect.addEventListener('change', () => { currentPage = 1; fetchProducts(); });
+if (sortSelect) sortSelect.addEventListener('change', () => { currentPage = 1; fetchProducts(); });
+
+loadCategories().then(fetchProducts);
