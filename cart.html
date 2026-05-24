@@ -116,43 +116,39 @@
         }
 
         async function checkout() {
-            if (currentCartItems.length === 0) {
-                alert("Ваша корзина пуста!");
-                return;
-            }
-
-            try {
-
-                const totalAmount = currentCartItems.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
-                const order = {
-                    id: Date.now().toString(),
-                    date: new Date().toISOString(),
-                    userId: "guest",
-                    items: currentCartItems,
-                    total: totalAmount
-                };
-
-                await fetch('http://localhost:3000/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(order)
-                });
-
-                for (let item of currentCartItems) {
-                    await fetch(`http://localhost:3000/cart/${item.id}`, {
-                        method: 'DELETE'
-                    });
-                }
-                
-                alert('Успех! Покупка успешно оформлена и сохранена в истории заказов!');
-                loadCart(); 
-            } catch (error) {
-                console.error('Ошибка при оформлении заказа:', error);
-                alert('Произошла ошибка при оформлении заказа.');
-            }
+        if (currentCartItems.length === 0) {
+            alert("Ваша корзина пуста!");
+            return;
         }
 
-        loadCart();
+        try {
+            const savedUser = localStorage.getItem('currentUser');
+            const userId = savedUser ? JSON.parse(savedUser).id : "guest";
+            const orderItem = { 
+                userId: userId, 
+                items: currentCartItems, 
+                id: Date.now().toString() 
+            }; 
+            
+            await fetch('http://localhost:3000/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderItem)
+            });
+            
+            for (let item of currentCartItems) {
+                await fetch(`http://localhost:3000/cart/${item.id}`, {
+                    method: 'DELETE'
+                });
+            }
+
+            alert('✅ Заказ оформлен!');
+            loadCart();
+        } catch (error) {
+            console.error('Ошибка при оформлении заказа:', error);
+        }
+    }
+    loadCart();
     </script>
 </body>
 </html>

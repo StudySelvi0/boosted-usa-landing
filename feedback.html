@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы - Boosted USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .feedback-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .form-control.invalid-field {
+            border-color: #FF2121;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .error-msg {
+            color: #FF2121;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .btn-submit {
+            width: 100%;
+            background: #FF5A45;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="top_cap">Financing option available at checkout.</div>
+    <div class="top_menu_under_cap">
+        <div class="logotype_block_in_top_menu_under_cap">
+            <a href="index.html">
+                <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+            </a>
+        </div>
+        <div class="middle_block_in_top_menu_under_cap">
+            <a href="catalog.html">К КАТАЛОГУ</a> 
+        </div>
+    </div>
+
+    <div class="feedback-container" id="feedbackContent">
+        <h2 style="text-align: center; margin-bottom: 30px;">Оставить отзыв</h2>
+        <form id="feedbackForm">
+            
+            <div class="form-group">
+                <label for="productSelect">Выберите товар</label>
+                <select id="productSelect" class="form-control">
+                    <option value="">-- Загрузка товаров... --</option>
+                </select>
+                <div class="error-msg" id="err-product">Вы не покупали этот товар! Отзыв могут оставлять только покупатели.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="reviewText">Ваш отзыв (минимум 10 символов)</label>
+                <textarea id="reviewText" class="form-control" placeholder="Напишите ваши впечатления о товаре..."></textarea>
+                <div class="error-msg" id="err-text">Отзыв слишком короткий. Напишите подробнее (минимум 10 символов).</div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit" disabled>Отправить отзыв</button>
+        </form>
+    </div>
+
+    <script>
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const feedbackContent = document.getElementById('feedbackContent');
+        
+        const productSelect = document.getElementById('productSelect');
+        const reviewText = document.getElementById('reviewText');
+        const submitBtn = document.getElementById('submitBtn');
+        const errProduct = document.getElementById('err-product');
+        const errText = document.getElementById('err-text');
+
+        let userOrders = [];
+
+        async function initFeedbackPage() {
+            if (!currentUser) {
+                feedbackContent.innerHTML = `<h3 style="text-align:center; color:#FF2121;">Сначала <a href="login.html">войдите в аккаунт</a>, чтобы оставлять отзывы!</h3>`;
+                return;
+            }
+
+            if (currentUser.role === 'admin') {
+                feedbackContent.innerHTML = `<h3 style="text-align:center; color:#FF2121;">Администраторам запрещено оставлять отзывы!</h3>`;
+                return;
+            }
+
+            try {
+                const resProducts = await fetch('http://localhost:3000/products');
+                const products = await resProducts.json();
+                
+                productSelect.innerHTML = '<option value="">-- Выберите товар --</option>';
+                products.forEach(p => {
+                    productSelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+                });
+
+                const resOrders = await fetch(`http://localhost:3000/orders?userId=${currentUser.id}`);
+                userOrders = await resOrders.json();
+
+            } catch (error) {
+                console.error("Ошибка загрузки данных:", error);
+            }
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            const selectedProductName = productSelect.value;
+            const textValue = reviewText.value.trim();
+
+            let hasBought = false;
+            if (selectedProductName) {
+                hasBought = userOrders.some(order => 
+                    order.items.some(item => item.name === selectedProductName)
+                );
+            }
+
+            if (selectedProductName && !hasBought) {
+                errProduct.style.display = 'block';
+                productSelect.classList.add('invalid-field');
+                isValid = false;
+            } else {
+                errProduct.style.display = 'none';
+                productSelect.classList.remove('invalid-field');
+            }
+
+            if (!selectedProductName) isValid = false;
+
+            if (textValue.length > 0 && textValue.length < 10) {
+                errText.style.display = 'block';
+                reviewText.classList.add('invalid-field');
+                isValid = false;
+            } else {
+                errText.style.display = 'none';
+                reviewText.classList.remove('invalid-field');
+            }
+
+            if (textValue.length < 10) isValid = false;
+
+            submitBtn.disabled = !isValid;
+        }
+
+        productSelect.addEventListener('change', validateForm);
+        reviewText.addEventListener('input', validateForm);
+
+        document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const newFeedback = {
+                id: Date.now().toString(),
+                userId: currentUser.id,
+                username: currentUser.username,
+                productName: productSelect.value,
+                text: reviewText.value.trim(),
+                date: new Date().toLocaleDateString()
+            };
+
+            try {
+                await fetch('http://localhost:3000/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newFeedback)
+                });
+                
+                alert('✅ Спасибо! Ваш отзыв успешно добавлен.');
+                reviewText.value = '';
+                productSelect.value = '';
+                validateForm();
+            } catch (error) {
+                console.error('Ошибка при отправке отзыва:', error);
+                alert('Ошибка соединения с сервером.');
+            }
+        });
+
+        initFeedbackPage();
+    </script>
+</body>
+</html>

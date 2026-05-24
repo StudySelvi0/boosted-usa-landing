@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
     <div class="top_cap">Financing option available at checkout.</div>
     <div class="top_menu_under_cap">
         <div class="logotype_block_in_top_menu_under_cap">
@@ -17,6 +20,10 @@
             <a href="index.html">BACK TO HOME</a> 
             <a href="favorites.html" style="margin-left: 20px;">FAVORITES ❤</a>
             <a href="cart.html" style="margin-left: 20px;">CART 🛒</a>
+            <a href="feedback.html" style="margin-left: 20px;">REVIEWS</a>
+                    <div id="adminLinkContainer" style="display: none; margin-left: 20px;">
+        <a href="admin.html" style="color: #FF5A45; font-weight: 700;">АДМИН-ПАНЕЛЬ</a>
+        </div>
         </div>
     </div>
 
@@ -50,6 +57,17 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+
+    <script>
+        const loggedUser = JSON.parse(localStorage.getItem('currentUser'));
+        
+        if (loggedUser && loggedUser.role === 'admin') {
+            const adminContainer = document.getElementById('adminLinkContainer');
+            if (adminContainer) {
+                adminContainer.style.display = 'inline-block';
+            }
+        }
+    </script>
 </body>
 </html>

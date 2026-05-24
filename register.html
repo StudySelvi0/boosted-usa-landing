@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация - Boosted USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            flex: 1;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .required::after {
+            content: " *";
+            color: #FF2121;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        .form-control.invalid-field {
+            border-color: #FF2121;
+        }
+        .error-msg {
+            color: #FF2121;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none; /* Скрыто по умолчанию */
+        }
+        .btn-submit {
+            width: 100%;
+            background: #FF5A45;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .action-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+        .action-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        .hint {
+            font-size: 11px;
+            color: #777;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top_cap">Financing option available at checkout.</div>
+    <div class="top_menu_under_cap">
+        <div class="logotype_block_in_top_menu_under_cap">
+            <a href="index.html">
+                <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+            </a>
+        </div>
+        <div class="middle_block_in_top_menu_under_cap">
+            <a href="catalog.html">К КАТАЛОГУ</a> 
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <h2 style="text-align: center; margin-bottom: 30px;">Регистрация</h2>
+        <form id="registerForm">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required" for="surname">Фамилия</label>
+                    <input type="text" id="surname" class="form-control" placeholder="Иванов">
+                    <div class="error-msg" id="err-surname">Введите фамилию</div>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="name">Имя</label>
+                    <input type="text" id="name" class="form-control" placeholder="Иван">
+                    <div class="error-msg" id="err-name">Введите имя</div>
+                </div>
+                <div class="form-group">
+                    <label for="patronymic">Отчество (не обяз.)</label>
+                    <input type="text" id="patronymic" class="form-control" placeholder="Иванович">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required" for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="example@mail.com">
+                    <div class="error-msg" id="err-email">Введите корректный E-mail</div>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="phone">Телефон (РБ)</label>
+                    <input type="text" id="phone" class="form-control" placeholder="+375291234567">
+                    <div class="error-msg" id="err-phone">Только номера РБ (например: +375291234567)</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required" for="dob">Дата рождения</label>
+                    <input type="date" id="dob" class="form-control">
+                    <div class="error-msg" id="err-dob">Регистрация только с 16 лет</div>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="username">Никнейм</label>
+                    <input type="text" id="username" class="form-control" readonly placeholder="Сгенерируйте никнейм">
+                    <button type="button" class="action-btn" id="genNickBtn" onclick="generateNick()">Сгенерировать</button>
+                    <div class="hint" id="nickHint">Осталось попыток: 5</div>
+                    <div class="error-msg" id="err-username">Сгенерируйте или введите никнейм</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="required" for="password">Пароль</label>
+                    <input type="password" id="password" class="form-control" placeholder="От 8 до 20 символов">
+                    <button type="button" class="action-btn" onclick="generatePassword()">Сгенерировать пароль</button>
+                    <div class="hint">1 заглавная, 1 строчная, 1 цифра, 1 спецсимвол.</div>
+                    <div class="error-msg" id="err-password">Слишком простой или популярный пароль</div>
+                </div>
+                <div class="form-group">
+                    <label class="required" for="confirmPassword">Повторите пароль</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Повторите пароль" onpaste="return false;" autocomplete="off">
+                    <div class="error-msg" id="err-confirmPassword">Пароли не совпадают</div>
+                </div>
+            </div>
+
+            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="agreement">
+                <label for="agreement" style="margin-bottom: 0; font-size: 14px;" class="required">Я согласен с правилами сервиса</label>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit" disabled>Зарегистрироваться</button>
+        </form>
+    </div>
+
+    <script>
+        // Эмуляция ТОП-100 самых популярных паролей (для проверки)
+        const top100Passwords = ["123456", "password", "12345678", "qwerty", "12345", "123456789", "iloveyou", "admin", "1234567"];
+        
+        let nickAttempts = 5;
+        let isFormValidGlobally = false;
+
+        const inputs = {
+            surname: document.getElementById('surname'),
+            name: document.getElementById('name'),
+            email: document.getElementById('email'),
+            phone: document.getElementById('phone'),
+            dob: document.getElementById('dob'),
+            username: document.getElementById('username'),
+            password: document.getElementById('password'),
+            confirmPassword: document.getElementById('confirmPassword'),
+            agreement: document.getElementById('agreement')
+        };
+
+        const errors = {
+            surname: document.getElementById('err-surname'),
+            name: document.getElementById('err-name'),
+            email: document.getElementById('err-email'),
+            phone: document.getElementById('err-phone'),
+            dob: document.getElementById('err-dob'),
+            username: document.getElementById('err-username'),
+            password: document.getElementById('err-password'),
+            confirmPassword: document.getElementById('err-confirmPassword')
+        };
+
+        // 1. ВАЛИДАЦИЯ ПРИ ВВОДЕ: убираем ошибку, когда пользователь начинает печатать
+        Object.keys(inputs).forEach(key => {
+            if (key === 'agreement') {
+                inputs[key].addEventListener('change', checkAllFields);
+            } else {
+                inputs[key].addEventListener('input', () => {
+                    hideError(key);
+                    checkAllFields();
+                });
+                // Показываем ошибку, только если юзер ушел из поля и оно невалидно
+                inputs[key].addEventListener('blur', () => {
+                    if (inputs[key].value && !validateField(key, inputs[key].value)) {
+                        showError(key);
+                    }
+                });
+            }
+        });
+
+        // 2. ГЕНЕРАЦИЯ НИКНЕЙМА
+        async function generateNick() {
+            if (nickAttempts <= 0) return;
+
+            const n = inputs.name.value.trim() || 'User';
+            const s = inputs.surname.value.trim() || 'Rider';
+            const rnd = Math.floor(1000 + Math.random() * 9000);
+            
+            // Берем первые 3 буквы фамилии и имени
+            const newNick = `${s.substring(0,3)}${n.substring(0,3)}${rnd}`;
+            inputs.username.value = newNick;
+            hideError('username');
+            
+            nickAttempts--;
+            document.getElementById('nickHint').innerText = `Осталось попыток: ${nickAttempts}`;
+
+            if (nickAttempts === 0) {
+                inputs.username.readOnly = false; // Разрешаем вводить вручную
+                document.getElementById('genNickBtn').disabled = true;
+                document.getElementById('nickHint').innerText = "Попытки исчерпаны. Введите никнейм вручную.";
+            }
+            checkAllFields();
+        }
+
+        // 3. ГЕНЕРАЦИЯ ПАРОЛЯ
+        function generatePassword() {
+            const chars = "abcdefghijklmnopqrstuvwxyz";
+            const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const nums = "0123456789";
+            const specs = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            
+            let pass = chars[Math.floor(Math.random() * chars.length)] +
+                       upper[Math.floor(Math.random() * upper.length)] +
+                       nums[Math.floor(Math.random() * nums.length)] +
+                       specs[Math.floor(Math.random() * specs.length)];
+
+            const allChars = chars + upper + nums + specs;
+            for (let i = 0; i < 8; i++) {
+                pass += allChars[Math.floor(Math.random() * allChars.length)];
+            }
+            
+            // Перемешиваем
+            pass = pass.split('').sort(() => 0.5 - Math.random()).join('');
+            
+            inputs.password.value = pass;
+            inputs.confirmPassword.value = pass;
+            hideError('password');
+            hideError('confirmPassword');
+            checkAllFields();
+        }
+
+        // 4. ПРАВИЛА ВАЛИДАЦИИ
+        function validateField(key, value) {
+            switch(key) {
+                case 'surname':
+                case 'name':
+                    return value.trim().length > 1;
+                case 'email':
+                    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                case 'phone':
+                    // Только РБ: начинается с +375, затем 29,33,44,25 и 7 цифр
+                    return /^\+375(29|33|44|25)\d{7}$/.test(value.replace(/\s|-/g, ''));
+                case 'dob':
+                    if (!value) return false;
+                    const birthDate = new Date(value);
+                    const today = new Date();
+                    let age = today.getFullYear() - birthDate.getFullYear();
+                    const m = today.getMonth() - birthDate.getMonth();
+                    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+                    return age >= 16;
+                case 'username':
+                    return value.trim().length >= 3;
+                case 'password':
+                    // 8-20 символов, 1 заглавная, 1 строчная, 1 цифра, 1 спецсимвол
+                    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
+                    if (!regex.test(value)) return false;
+                    if (top100Passwords.includes(value.toLowerCase())) return false; // Проверка на ТОП-100
+                    return true;
+                case 'confirmPassword':
+                    return value === inputs.password.value && value.length > 0;
+                default:
+                    return true;
+            }
+        }
+
+        // 5. ОТОБРАЖЕНИЕ ОШИБОК
+        function showError(key) {
+            if (errors[key]) errors[key].style.display = 'block';
+            if (inputs[key]) inputs[key].classList.add('invalid-field');
+        }
+
+        function hideError(key) {
+            if (errors[key]) errors[key].style.display = 'none';
+            if (inputs[key]) inputs[key].classList.remove('invalid-field');
+        }
+
+        // 6. ГЛОБАЛЬНАЯ ПРОВЕРКА ДЛЯ КНОПКИ
+        function checkAllFields() {
+            let isValid = true;
+            Object.keys(inputs).forEach(key => {
+                if (key === 'agreement') {
+                    if (!inputs[key].checked) isValid = false;
+                } else {
+                    if (!validateField(key, inputs[key].value)) isValid = false;
+                }
+            });
+            document.getElementById('submitBtn').disabled = !isValid;
+        }
+
+        // 7. ОТПРАВКА ФОРМЫ (Регистрация в db.json)
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Проверка на уникальность никнейма в базе
+            try {
+                const res = await fetch('http://localhost:3000/users');
+                const users = await res.json();
+                
+                const isUserExists = users.some(u => u.username === inputs.username.value);
+                if (isUserExists) {
+                    alert('Этот никнейм уже занят! Выберите другой.');
+                    showError('username');
+                    return;
+                }
+
+                // Формируем нового пользователя
+                const newUser = {
+                    id: Date.now().toString(),
+                    surname: inputs.surname.value.trim(),
+                    name: inputs.name.value.trim(),
+                    patronymic: document.getElementById('patronymic').value.trim(),
+                    email: inputs.email.value.trim(),
+                    phone: inputs.phone.value.trim(),
+                    dob: inputs.dob.value,
+                    username: inputs.username.value.trim(),
+                    password: inputs.password.value,
+                    role: "client" // Покупатель/Клиент по умолчанию
+                };
+
+                await fetch('http://localhost:3000/users', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newUser)
+                });
+                
+                alert('✅ Регистрация прошла успешно! Теперь вы можете делать заказы и оставлять отзывы.');
+                localStorage.setItem('currentUser', JSON.stringify(newUser));
+                window.location.href = 'catalog.html';
+                
+            } catch (error) {
+                console.error('Ошибка при регистрации:', error);
+                alert('Ошибка соединения с сервером. Проверьте запущен ли json-server.');
+            }
+        });
+    </script>
+</body>
+</html>

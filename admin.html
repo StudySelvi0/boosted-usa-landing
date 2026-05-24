@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - Boosted USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .admin-grid {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            align-items: flex-start;
+        }
+        .admin-section {
+            flex: 1;
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        .required::after {
+            content: " *";
+            color: #FF2121;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-control.invalid-field {
+            border-color: #FF2121;
+        }
+        .error-msg {
+            color: #FF2121;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        .btn-action {
+            width: 100%;
+            background: #FF5A45;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-action:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .item-list, .feedback-list {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .list-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .list-card img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        .btn-small {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .btn-edit { background: #333; color: white; }
+        .btn-delete { background: #FF2121; color: white; }
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top_cap">Панель администратора магазина Boosted USA</div>
+    <div class="top_menu_under_cap">
+        <div class="logotype_block_in_top_menu_under_cap">
+            <a href="index.html">
+                <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+            </a>
+        </div>
+        <div class="middle_block_in_top_menu_under_cap">
+            <a href="catalog.html">В КАТАЛОГ</a> 
+        </div>
+    </div>
+
+    <div class="admin-container" id="adminPageContent">
+        <h1 style="text-align: center;">Управление магазином</h1>
+
+        <div class="admin-grid">
+            <div class="admin-section">
+                <h2 id="formTitle">Добавить товар</h2>
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    
+                    <div class="form-group">
+                        <label class="required" for="prodName">Название товара</label>
+                        <input type="text" id="prodName" class="form-control" placeholder="Например: Boosted Stealth">
+                        <div class="error-msg" id="err-prodName">Название должно быть длиннее 2 символов</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required" for="prodPrice">Цена ($)</label>
+                        <input type="number" step="0.01" id="prodPrice" class="form-control" placeholder="1599.00">
+                        <div class="error-msg" id="err-prodPrice">Введите корректную цену больше нуля</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required" for="prodCategory">Категория</label>
+                        <input type="text" id="prodCategory" class="form-control" placeholder="Skateboards, Scooters, Accessories">
+                        <div class="error-msg" id="err-prodCategory">Укажите категорию товара</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="required" for="prodImage">Путь к картинке</label>
+                        <input type="text" id="prodImage" class="form-control" placeholder="scateboard.png">
+                        <div class="error-msg" id="err-prodImage">Укажите имя файла картинки или URL</div>
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="prodInStock" checked>
+                        <label for="prodInStock" style="margin-bottom: 0;">В наличии</label>
+                    </div>
+
+                    <button type="submit" id="prodSubmitBtn" class="btn-action" disabled>Сохранить товар</button>
+                    <button type="button" id="cancelEditBtn" class="btn-action" style="background:#777; display:none;" onclick="resetProductForm()">Отмена</button>
+                </form>
+
+                <h3 style="margin-top: 30px;">Список товаров в базе</h3>
+                <div class="item-list" id="productsList"></div>
+            </div>
+
+            <div class="admin-section">
+                <h2>Модерация отзывов</h2>
+                
+                <div class="filter-row">
+                    <select id="filterProduct" class="form-control">
+                        <option value="">Все товары</option>
+                    </select>
+                    <select id="filterUser" class="form-control">
+                        <option value="">Все пользователи</option>
+                    </select>
+                </div>
+
+                <div class="feedback-list" id="feedbacksList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. ПРОВЕРКА ДОСТУПА (Строго по методичке)
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            document.getElementById('adminPageContent').innerHTML = `
+                <div style="text-align:center; padding:50px; color:#FF2121; font-family:'Roboto';">
+                    <h2>Доступ заблокирован!</h2>
+                    <p>Эта страница доступна только пользователям с ролью администратора.</p>
+                    <a href="login.html" style="color:#FF5A45; font-weight:700;">Войти как Администратор</a>
+                </div>`;
+        }
+
+        const productForm = document.getElementById('productForm');
+        const prodSubmitBtn = document.getElementById('prodSubmitBtn');
+        const cancelEditBtn = document.getElementById('cancelEditBtn');
+        const formTitle = document.getElementById('formTitle');
+
+        const fields = {
+            name: document.getElementById('prodName'),
+            price: document.getElementById('prodPrice'),
+            category: document.getElementById('prodCategory'),
+            image: document.getElementById('prodImage'),
+            inStock: document.getElementById('prodInStock'),
+            id: document.getElementById('productId')
+        };
+
+        const errors = {
+            name: document.getElementById('err-prodName'),
+            price: document.getElementById('err-prodPrice'),
+            category: document.getElementById('err-prodCategory'),
+            image: document.getElementById('err-prodImage')
+        };
+
+        let isEditMode = false;
+        let allFeedbacks = [];
+
+        // 2. ВАЛИДАЦИЯ ФОРМЫ (Исчезновение ошибок при вводе)
+        Object.keys(errors).forEach(key => {
+            fields[key].addEventListener('input', () => {
+                hideError(key);
+                validateProductForm();
+            });
+            fields[key].addEventListener('blur', () => {
+                if (!validateField(key, fields[key].value)) showError(key);
+            });
+        });
+
+        function validateField(key, value) {
+            if (key === 'name') return value.trim().length > 2;
+            if (key === 'price') return !isNaN(value) && Number(value) > 0;
+            if (key === 'category') return value.trim().length > 0;
+            if (key === 'image') return value.trim().length > 0;
+            return true;
+        }
+
+        function showError(key) {
+            errors[key].style.display = 'block';
+            fields[key].classList.add('invalid-field');
+        }
+
+        function hideError(key) {
+            errors[key].style.display = 'none';
+            fields[key].classList.remove('invalid-field');
+        }
+
+        function validateProductForm() {
+            let isValid = true;
+            Object.keys(errors).forEach(key => {
+                if (!validateField(key, fields[key].value)) isValid = false;
+            });
+            prodSubmitBtn.disabled = !isValid;
+        }
+
+        // 3. РАБОТА С ТОВАРАМИ (GET, POST, PUT, DELETE)
+        async function loadProducts() {
+            const res = await fetch('http://localhost:3000/products');
+            const products = await res.json();
+            
+            // Вывод списка товаров в админке
+            const listContainer = document.getElementById('productsList');
+            listContainer.innerHTML = '';
+            
+            // Заполнение фильтра товаров
+            const filterProduct = document.getElementById('filterProduct');
+            filterProduct.innerHTML = '<option value="">Все товары</option>';
+
+            products.forEach(p => {
+                filterProduct.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+                listContainer.innerHTML += `
+                    <div class="list-card">
+                        <img src="${p.image}">
+                        <div style="flex-grow:1; margin-left:15px;">
+                            <div style="font-weight:700;">${p.name}</div>
+                            <div style="color:#FF5A45;">$${Number(p.price).toFixed(2)}</div>
+                        </div>
+                        <div style="display:flex; gap:5px;">
+                            <button class="btn-small btn-edit" onclick="setupEditMode('${p.id}')">✏</button>
+                            <button class="btn-small btn-delete" onclick="deleteProduct('${p.id}')">❌</button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        productForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const productData = {
+                name: fields.name.value.trim(),
+                price: Number(fields.price.value),
+                category: fields.category.value.trim(),
+                image: fields.image.value.trim(),
+                inStock: fields.inStock.checked
+            };
+
+            let url = 'http://localhost:3000/products';
+            let method = 'POST';
+
+            if (isEditMode) {
+                url += `/${fields.id.value}`;
+                method = 'PUT';
+            } else {
+                productData.id = Date.now().toString();
+            }
+
+            await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(productData)
+            });
+
+            alert(isEditMode ? 'Товар обновлен!' : 'Товар добавлен!');
+            resetProductForm();
+            loadProducts();
+        });
+
+        async function setupEditMode(id) {
+            const res = await fetch(`http://localhost:3000/products/${id}`);
+            const p = await res.json();
+
+            fields.id.value = p.id;
+            fields.name.value = p.name;
+            fields.price.value = p.price;
+            fields.category.value = p.category;
+            fields.image.value = p.image;
+            fields.inStock.checked = p.inStock;
+
+            isEditMode = true;
+            formTitle.innerText = "Редактировать товар";
+            cancelEditBtn.style.display = 'block';
+            validateProductForm();
+        }
+
+        function resetProductForm() {
+            productForm.reset();
+            fields.id.value = '';
+            isEditMode = false;
+            formTitle.innerText = "Добавить товар";
+            cancelEditBtn.style.display = 'none';
+            prodSubmitBtn.disabled = true;
+            Object.keys(errors).forEach(hideError);
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('Удалить этот товар из каталога?')) return;
+            await fetch(`http://localhost:3000/products/${id}`, { method: 'DELETE' });
+            loadProducts();
+        }
+
+        // 4. УПРАВЛЕНИЕ ОТЗЫВАМИ (Фильтрация и удаление)
+        async function loadFeedbacks() {
+            const resF = await fetch('http://localhost:3000/feedback');
+            allFeedbacks = await resF.json();
+
+            // Заполнение фильтра пользователей уникальными юзерами
+            const filterUser = document.getElementById('filterUser');
+            filterUser.innerHTML = '<option value="">Все пользователи</option>';
+            const uniqueUsers = [...new Set(allFeedbacks.map(f => f.username))];
+            uniqueUsers.forEach(u => {
+                filterUser.innerHTML += `<option value="${u}">${u}</option>`;
+            });
+
+            renderFilteredFeedbacks();
+        }
+
+        function renderFilteredFeedbacks() {
+            const prodFilter = document.getElementById('filterProduct').value;
+            const userFilter = document.getElementById('filterUser').value;
+            const container = document.getElementById('feedbacksList');
+            container.innerHTML = '';
+
+            const filtered = allFeedbacks.filter(f => {
+                const matchProd = prodFilter ? f.productName === prodFilter : true;
+                const matchUser = userFilter ? f.username === userFilter : true;
+                return matchProd && matchUser;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div style="color:#777; text-align:center;">Отзывов не найдено</div>';
+                return;
+            }
+
+            filtered.forEach(f => {
+                container.innerHTML += `
+                    <div class="list-card" style="flex-direction:column; align-items:flex-start; gap:5px;">
+                        <div style="display:flex; justify-content:space-between; width:100%; font-size:12px; color:#777;">
+                            <span>Пользователь: <b>${f.username}</b></span>
+                            <span>Дата: ${f.date || ''}</span>
+                        </div>
+                        <div style="font-size:14px; font-weight:700; color:#FF5A45;">Товар: ${f.productName}</div>
+                        <p style="margin:5px 0; font-size:14px; width:100%; word-break:break-word;">${f.text}</p>
+                        <button class="btn-small btn-delete" style="align-self:flex-end;" onclick="deleteFeedback('${f.id}')">Удалить отзыв</button>
+                    </div>`;
+            });
+        }
+
+        async function deleteFeedback(id) {
+            if (!confirm('Удалить этот отзыв?')) return;
+            await fetch(`http://localhost:3000/feedback/${id}`, { method: 'DELETE' });
+            loadFeedbacks();
+        }
+
+        document.getElementById('filterProduct').addEventListener('change', renderFilteredFeedbacks);
+        document.getElementById('filterUser').addEventListener('change', renderFilteredFeedbacks);
+
+        if (currentUser && currentUser.role === 'admin') {
+            loadProducts();
+            loadFeedbacks();
+        }
+    </script>
+</body>
+</html>

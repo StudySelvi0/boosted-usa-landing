@@ -8,7 +8,26 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+        <body>
+<script>
+    // Ждем, пока браузер отрисует страницу
+    window.addEventListener('DOMContentLoaded', () => {
+        const preloader = document.getElementById('preloader');
+        
+        // Если прелоадер есть, убиваем его через 1 секунду жестко
+        if (preloader) {
+            setTimeout(() => {
+                preloader.style.opacity = '0'; // Плавное исчезновение
+                
+                // Ждем окончания анимации прозрачности и прячем полностью
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 1000); // 1000 мс = 1 секунда показа
+        }
+    });
+</script>
+
         <div class="top_cap">Financing option available at checkout.</div>
         
         <div class="top_menu_under_cap">
@@ -24,9 +43,14 @@
                 <a href="#">MORE INFO</a>
             </div>
 
-            <div class="the_last_block_in_top_menu_under_cap">
+           <div class="the_last_block_in_top_menu_under_cap">
+            <a href="login.html">
                 <img src="Frame.svg" alt="User">
+            </a>
+            
+            <a href="catalog.html">
                 <img src="Frame (1).svg" alt="Shop">
+            </a>
             </div>
         </div>
         

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Boosted USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-family: 'Roboto', sans-serif;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            width: 100%;
+            background: #FF5A45;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background: #e04e3b;
+        }
+        .switch-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .switch-link a {
+            color: #FF5A45;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="top_cap">Financing option available at checkout.</div>
+    <div class="top_menu_under_cap">
+        <div class="logotype_block_in_top_menu_under_cap">
+            <a href="index.html">
+                <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+            </a>
+        </div>
+        <div class="middle_block_in_top_menu_under_cap">
+            <a href="catalog.html">К КАТАЛОГУ</a> 
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <h2 style="text-align: center; margin-bottom: 30px;">Вход в аккаунт</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Никнейм</label>
+                <input type="text" id="username" class="form-control" required placeholder="Введите ваш никнейм">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" class="form-control" required placeholder="Введите ваш пароль">
+            </div>
+
+            <button type="submit" class="btn-submit">Войти</button>
+        </form>
+        
+        <div class="switch-link">
+            Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const usernameInput = document.getElementById('username').value.trim();
+            const passwordInput = document.getElementById('password').value;
+
+            try {
+                const res = await fetch('http://localhost:3000/users');
+                const users = await res.json();
+
+                const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
+
+                if (user) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    
+                    alert(`Добро пожаловать, ${user.name}!`);
+                    
+                    window.location.href = 'catalog.html';
+                } else {
+                    alert('Неверный никнейм или пароль!');
+                }
+            } catch (error) {
+                console.error('Ошибка авторизации:', error);
+                alert('Ошибка сервера.');
+            }
+        });
+    </script>
+</body>
+</html>

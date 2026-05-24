@@ -174,7 +174,87 @@
     }
   ],
   "cart": [],
-  "users": [],
+  "users": [
+    {
+      "id": "1779637709864",
+      "surname": "Стибло",
+      "name": "Владислав",
+      "patronymic": "",
+      "email": "ggwwpptg@mail.ru",
+      "phone": "+375257259002",
+      "dob": "2000-02-01",
+      "username": "СтиВла3885",
+      "password": "212fgsd!!FRE",
+      "role": "client"
+    },
+    {
+      "id": "1779639082801",
+      "surname": "1!",
+      "name": "2!",
+      "patronymic": "3!",
+      "email": "ggwwpptg@mail.ru",
+      "phone": "+375257259002",
+      "dob": "2000-03-02",
+      "username": "1!2!4141",
+      "password": "L]4O`}Aytf.C",
+      "role": "client"
+    },
+    {
+      "id": "admin_test",
+      "surname": "Админов",
+      "name": "Админ",
+      "patronymic": "",
+      "email": "admin@test.com",
+      "phone": "+375290000000",
+      "dob": "1990-01-01",
+      "username": "admin",
+      "password": "AdminPassword123!",
+      "role": "admin"
+    }
+  ],
   "feedback": [],
-  "orders": []
+  "orders": [
+    {
+      "items": [
+        {
+          "id": "1779636445960",
+          "name": "Evolve Diablo Carbon 2 in 1",
+          "category": "Boards",
+          "price": 2299,
+          "oldPrice": null,
+          "rating": 4.9,
+          "image": "scateboard2.png",
+          "inStock": true,
+          "quantity": 1
+        },
+        {
+          "id": "1779636448848",
+          "name": "Boosted T-Shirt",
+          "category": "Gear",
+          "price": 20,
+          "oldPrice": null,
+          "rating": 4.5,
+          "image": "t-shirt.png",
+          "inStock": true,
+          "quantity": 1
+        }
+      ],
+      "id": "1779636451464"
+    },
+    {
+      "userId": "admin_test",
+      "items": [
+        {
+          "name": "хуй золотой",
+          "price": 20,
+          "category": "20",
+          "image": "хуй золотой",
+          "inStock": true,
+          "id": "1779650762345",
+          "quantity": 1
+        }
+      ],
+      "id": "1779650779233"
+    }
+  ]
 }
