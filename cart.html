@@ -122,16 +122,33 @@
             }
 
             try {
+
+                const totalAmount = currentCartItems.reduce((sum, item) => sum + (Number(item.price) * item.quantity), 0);
+                const order = {
+                    id: Date.now().toString(),
+                    date: new Date().toISOString(),
+                    userId: "guest",
+                    items: currentCartItems,
+                    total: totalAmount
+                };
+
+                await fetch('http://localhost:3000/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(order)
+                });
+
                 for (let item of currentCartItems) {
                     await fetch(`http://localhost:3000/cart/${item.id}`, {
                         method: 'DELETE'
                     });
                 }
                 
-                alert('Успех! Покупка успешно оформлена!');
+                alert('Успех! Покупка успешно оформлена и сохранена в истории заказов!');
                 loadCart(); 
             } catch (error) {
                 console.error('Ошибка при оформлении заказа:', error);
+                alert('Произошла ошибка при оформлении заказа.');
             }
         }
 
