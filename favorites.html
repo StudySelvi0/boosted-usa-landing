@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites - Boosted USA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top_cap">Financing option available at checkout.</div>
+    <div class="top_menu_under_cap">
+        <div class="logotype_block_in_top_menu_under_cap">
+            <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+        </div>
+        <div class="middle_block_in_top_menu_under_cap">
+            <a href="catalog.html">BACK TO CATALOG</a> 
+        </div>
+    </div>
+
+    <div class="accessories_section" style="margin-top: 50px;">
+        <div class="title_block_in_accessories">
+            <div class="title_text_in_accessories">My favorites</div>
+            <div class="grey_line_in_accessories"></div>
+        </div>
+
+        <div id="favorites-container" class="items_row_in_accessories" style="flex-wrap: wrap; max-width: 1200px; gap: 30px; justify-content: center; margin-top: 40px;">
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('favorites-container');
+
+        async function loadFavorites() {
+            try {
+                const res = await fetch('http://localhost:3000/favorites');
+                const favs = await res.json();
+                renderFavs(favs);
+            } catch (error) {
+                console.error('Ошибка загрузки избранного:', error);
+            }
+        }
+
+        function renderFavs(items) {
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div style="width: 100%; text-align: center; padding: 50px 0;">
+                        <h2 style="color: #FF5A45; font-family: 'Roboto', sans-serif;">В избранном пока пусто :(</h2>
+                        <p style="color: #777; font-family: 'Roboto', sans-serif;">Перейдите в каталог и добавьте товары.</p>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            items.forEach(product => {
+                html += `
+                    <div class="item_card_in_accessories" style="position: relative; padding-bottom: 50px; height: 320px;">
+                        <img src="${product.image}" alt="${product.name}" class="item_photo_in_accessories" style="object-fit: contain;">
+                        <div class="item_name_in_accessories">${product.name}</div>
+                        <div class="price_box_in_accessories">
+                            <span class="black_price_in_accessories">$${Number(product.price).toFixed(2)}</span>
+                        </div>
+                        
+                        <div style="position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: center;">
+                            <button onclick="removeFromFav('${product.id}')" style="background: #333; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; font-family: 'Roboto'; font-size: 12px; transition: 0.3s;">Удалить ❌</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        async function removeFromFav(id) {
+            try {
+                await fetch(`http://localhost:3000/favorites/${id}`, {
+                    method: 'DELETE'
+                });
+                loadFavorites();
+            } catch (error) {
+                console.error('Ошибка удаления:', error);
+            }
+        }
+
+        loadFavorites();
+    </script>
+</body>
+</html>

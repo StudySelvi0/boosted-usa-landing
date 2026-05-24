@@ -1,20 +1,155 @@
 {
   "products": [
-    { "id": "1", "name": "Evolve Fusion All Terrain", "category": "Boards", "price": 0, "oldPrice": null, "rating": 4.8, "image": "scateboard.png", "inStock": false },
-    { "id": "2", "name": "Evolve Diablo Carbon 2 in 1", "category": "Boards", "price": 2299, "oldPrice": null, "rating": 4.9, "image": "scateboard2.png", "inStock": true },
-    { "id": "3", "name": "Evolve STOKE - X Skateboard", "category": "Boards", "price": 1399, "oldPrice": null, "rating": 4.7, "image": "scateboard3.png", "inStock": true },
-    { "id": "4", "name": "Evolve Diablo Bamboo Street", "category": "Boards", "price": 1999, "oldPrice": 2080, "rating": 4.6, "image": "scateboard4.png", "inStock": true },
-    { "id": "5", "name": "Segway eKickScooter GT3 PRO", "category": "Scooters", "price": 2699, "oldPrice": null, "rating": 4.9, "image": "scooter.png", "inStock": true },
-    { "id": "6", "name": "Dualtron Thunder 3", "category": "Scooters", "price": 3499, "oldPrice": 3999, "rating": 4.8, "image": "scooter2.png", "inStock": true },
-    { "id": "7", "name": "Premium Helmet", "category": "Gear", "price": 99, "oldPrice": null, "rating": 4.8, "image": "helmet.png", "inStock": true },
-    { "id": "8", "name": "Boosted Daypack Waterproof", "category": "Gear", "price": 40, "oldPrice": 179, "rating": 4.9, "image": "bag.png", "inStock": true },
-    { "id": "9", "name": "Boosted T-Shirt", "category": "Gear", "price": 20, "oldPrice": null, "rating": 4.5, "image": "t-shirt.png", "inStock": true },
-    { "id": "10", "name": "Rev Tube", "category": "Accessories", "price": 16, "oldPrice": 19, "rating": 4.2, "image": "zapchast1.jpg", "inStock": true },
-    { "id": "11", "name": "Boosted Rev Stem Catch", "category": "Accessories", "price": 19, "oldPrice": 29, "rating": 4.0, "image": "zapchast2.jpg", "inStock": true },
-    { "id": "12", "name": "Stomp Brake Fender", "category": "Accessories", "price": 50, "oldPrice": null, "rating": 4.8, "image": "zapchast3.jpg", "inStock": false },
-    { "id": "13", "name": "Boosted Belt Kit", "category": "Accessories", "price": 25, "oldPrice": null, "rating": 4.9, "image": "zapchast4.jpg", "inStock": true },
-    { "id": "14", "name": "Bearing Service Kit", "category": "Accessories", "price": 50, "oldPrice": null, "rating": 4.7, "image": "zapchast5.jpg", "inStock": true },
-    { "id": "15", "name": "Pulley Upgrade Kit", "category": "Accessories", "price": 75, "oldPrice": null, "rating": 4.6, "image": "zapchast6.jpg", "inStock": true }
+    {
+      "id": "1",
+      "name": "Evolve Fusion All Terrain",
+      "category": "Boards",
+      "price": 0,
+      "oldPrice": null,
+      "rating": 4.8,
+      "image": "scateboard.png",
+      "inStock": false
+    },
+    {
+      "id": "2",
+      "name": "Evolve Diablo Carbon 2 in 1",
+      "category": "Boards",
+      "price": 2299,
+      "oldPrice": null,
+      "rating": 4.9,
+      "image": "scateboard2.png",
+      "inStock": true
+    },
+    {
+      "id": "3",
+      "name": "Evolve STOKE - X Skateboard",
+      "category": "Boards",
+      "price": 1399,
+      "oldPrice": null,
+      "rating": 4.7,
+      "image": "scateboard3.png",
+      "inStock": true
+    },
+    {
+      "id": "4",
+      "name": "Evolve Diablo Bamboo Street",
+      "category": "Boards",
+      "price": 1999,
+      "oldPrice": 2080,
+      "rating": 4.6,
+      "image": "scateboard4.png",
+      "inStock": true
+    },
+    {
+      "id": "5",
+      "name": "Segway eKickScooter GT3 PRO",
+      "category": "Scooters",
+      "price": 2699,
+      "oldPrice": null,
+      "rating": 4.9,
+      "image": "scooter.png",
+      "inStock": true
+    },
+    {
+      "id": "6",
+      "name": "Dualtron Thunder 3",
+      "category": "Scooters",
+      "price": 3499,
+      "oldPrice": 3999,
+      "rating": 4.8,
+      "image": "scooter2.png",
+      "inStock": true
+    },
+    {
+      "id": "7",
+      "name": "Premium Helmet",
+      "category": "Gear",
+      "price": 99,
+      "oldPrice": null,
+      "rating": 4.8,
+      "image": "helmet.png",
+      "inStock": true
+    },
+    {
+      "id": "8",
+      "name": "Boosted Daypack Waterproof",
+      "category": "Gear",
+      "price": 40,
+      "oldPrice": 179,
+      "rating": 4.9,
+      "image": "bag.png",
+      "inStock": true
+    },
+    {
+      "id": "9",
+      "name": "Boosted T-Shirt",
+      "category": "Gear",
+      "price": 20,
+      "oldPrice": null,
+      "rating": 4.5,
+      "image": "t-shirt.png",
+      "inStock": true
+    },
+    {
+      "id": "10",
+      "name": "Rev Tube",
+      "category": "Accessories",
+      "price": 16,
+      "oldPrice": 19,
+      "rating": 4.2,
+      "image": "zapchast1.jpg",
+      "inStock": true
+    },
+    {
+      "id": "11",
+      "name": "Boosted Rev Stem Catch",
+      "category": "Accessories",
+      "price": 19,
+      "oldPrice": 29,
+      "rating": 4,
+      "image": "zapchast2.jpg",
+      "inStock": true
+    },
+    {
+      "id": "12",
+      "name": "Stomp Brake Fender",
+      "category": "Accessories",
+      "price": 50,
+      "oldPrice": null,
+      "rating": 4.8,
+      "image": "zapchast3.jpg",
+      "inStock": false
+    },
+    {
+      "id": "13",
+      "name": "Boosted Belt Kit",
+      "category": "Accessories",
+      "price": 25,
+      "oldPrice": null,
+      "rating": 4.9,
+      "image": "zapchast4.jpg",
+      "inStock": true
+    },
+    {
+      "id": "14",
+      "name": "Bearing Service Kit",
+      "category": "Accessories",
+      "price": 50,
+      "oldPrice": null,
+      "rating": 4.7,
+      "image": "zapchast5.jpg",
+      "inStock": true
+    },
+    {
+      "id": "15",
+      "name": "Pulley Upgrade Kit",
+      "category": "Accessories",
+      "price": 75,
+      "oldPrice": null,
+      "rating": 4.6,
+      "image": "zapchast6.jpg",
+      "inStock": true
+    }
   ],
   "favorites": [],
   "cart": []
