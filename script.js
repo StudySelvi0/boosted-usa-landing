@@ -1,3 +1,14 @@
+const i18n = {
+    'en': {
+        'nav-skateboards': 'ELECTRIC SKATEBOARDS',
+        'hero-title': 'Welcome to Boosted USA'
+    },
+    'ru': {
+        'nav-skateboards': 'ЭЛЕКТРИЧЕСКИЕ СКЕЙТБОРДЫ',
+        'hero-title': 'Добро пожаловать в Boosted USA'
+    }
+};
+
 // ========================================================
 // 1. ОТКЛЮЧЕНИЕ ПРЕЛОАДЕРА (Фикс "вечной загрузки")
 // ========================================================
@@ -372,4 +383,63 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn("Элемент .mySwiper не найден на странице");
         }
     }, 300);
+});
+
+// --- ЛОГИКА ТЕМЫ И ЛОКАЛИЗАЦИИ ---
+
+// Переключение темы
+function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-theme');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Восстановление темы при загрузке
+function applySavedTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+}
+
+// Инициализация при старте
+document.addEventListener('DOMContentLoaded', () => {
+    applySavedTheme();
+    // Здесь можно добавить вызов функции загрузки языка
+});
+
+// --- ЛОГИКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ---
+
+function initTheme() {
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('theme');
+
+    // Если тема была сохранена, применяем её
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
+}
+
+// Вызываем инициализацию при загрузке
+document.addEventListener('DOMContentLoaded', initTheme);
+
+function setLanguage(lang) {
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key]) {
+            el.textContent = i18n[lang][key];
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    setLanguage(savedLang);
 });

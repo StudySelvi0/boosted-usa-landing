@@ -1529,3 +1529,75 @@ body.lock-scroll { overflow: hidden; }
 }
 .cart-counter.bump { transform: scale(1.5); }
 .cart-icon-wrapper { position: relative; display: inline-block; }
+
+/* Переменные для тем */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+}
+
+body.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Переменные по умолчанию (светлая тема) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --accent-color: #FF5A45;
+}
+
+/* Переменные для темной темы */
+body.dark-theme {
+    --bg-color: #121212;
+    --text-color: #ffffff; /* Текст становится белым */
+    --accent-color: #FF705C; /* Чуть мягче акцент для темного */
+}
+
+/* Применяем переменные к элементам */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Обязательно добавь это, чтобы заголовки и ссылки подхватили белый цвет */
+h1, h2, h3, p, a, div {
+    color: var(--text-color);
+}
+
+/* Если есть специфические места, где цвет задан жестко, лучше их переопределить */
+.top_cap, .footer_text_in_final {
+    color: var(--text-color);
+}
+
+/* Начальные настройки (Светлая тема) */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --accent-color: #FF5A45;
+}
+
+/* Переопределение цветов для темной темы */
+body.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+}
+
+/* Применяем переменные к элементам */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Если у тебя есть специфичные блоки (например, текст в карточках), 
+   убедись, что они используют переменную var(--text-color) */
+.item_name_in_accessories, 
+.title_in_looking_for, 
+.paragraph_in_looking_for {
+    color: var(--text-color);
+}
