@@ -1,61 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Boosted USA</title>
+        <!-- Фавикон -->
+        <link rel="icon" href="Rectangle (1).svg" type="image/svg+xml">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <!-- Подключение Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <link rel="stylesheet" href="style.css">
     </head>
-        <body>
-<script>
-    // Ждем, пока браузер отрисует страницу
-    window.addEventListener('DOMContentLoaded', () => {
-        const preloader = document.getElementById('preloader');
-        
-        // Если прелоадер есть, убиваем его через 1 секунду жестко
-        if (preloader) {
-            setTimeout(() => {
-                preloader.style.opacity = '0'; // Плавное исчезновение
-                
-                // Ждем окончания анимации прозрачности и прячем полностью
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 1000); // 1000 мс = 1 секунда показа
-        }
-    });
-</script>
+    <body>
+        <!-- Прелоадер -->
+        <div id="preloader"><div class="spinner"></div></div>
 
-        <div class="top_cap">Financing option available at checkout.</div>
+        <!-- Оверлей для бургер меню -->
+        <div class="overlay"></div>
+
+        <div class="top_cap" id="top">Financing option available at checkout.</div>
         
         <div class="top_menu_under_cap">
             <div class="logotype_block_in_top_menu_under_cap">
-                <img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo">
+                <a href="index.html"><img class="logotype_in_top_menu_under_cap" src="Rectangle (1).svg" alt="Boosted USA Logo"></a>
             </div>
             
-           <div class="middle_block_in_top_menu_under_cap">
+            <div class="middle_block_in_top_menu_under_cap">
                 <a href="catalog.html">ELECTRIC SKATEBOARDS</a> 
                 <a href="catalog.html">ELECTRIC SCOOTERS</a>
-                <a href="catalog.html">ACCESSORIES</a>
-                <a href="#">GIFT CARD</a>
-                <a href="#">MORE INFO</a>
+                <a href="#accessories-anchor">ACCESSORIES</a>
+                <a href="#gallery-anchor">GALLERY</a>
+                <a href="#map-anchor">STORE MAP</a>
             </div>
 
-           <div class="the_last_block_in_top_menu_under_cap">
-            <a href="login.html">
-                <img src="Frame.svg" alt="User">
-            </a>
-            
-            <a href="catalog.html">
-                <img src="Frame (1).svg" alt="Shop">
-            </a>
+            <div class="the_last_block_in_top_menu_under_cap" style="width: auto;">
+                <a href="login.html">
+                    <img src="Frame.svg" alt="User">
+                </a>
+                
+                <!-- Иконка корзины с анимированным счетчиком -->
+                <a href="cart.html" class="cart-icon-wrapper" style="margin-left:10px; position:relative;">
+                    <img src="Frame (1).svg" alt="Shop">
+                    <span id="cart-counter" class="cart-counter">0</span>
+                </a>
+                
+                <!-- Кнопка Бургер меню -->
+                <div class="burger-btn" style="margin-left: 20px;">&#9776;</div>
             </div>
         </div>
+
+        <!-- Мобильное Бургер-меню -->
+        <nav class="mobile-menu">
+            <a href="catalog.html">ELECTRIC SKATEBOARDS</a> 
+            <a href="catalog.html">ELECTRIC SCOOTERS</a> 
+            <a href="#accessories-anchor">ACCESSORIES</a>
+            <a href="#gallery-anchor">MEDIA GALLERY</a>
+            <a href="#map-anchor">STORE MAP</a>
+            <a href="login.html">LOGIN</a>
+        </nav>
         
-        <div class="hero_section">
-            <div class="hero_content">
+        <!-- Секция с Параллакс-эффектом -->
+        <div class="hero_section parallax-container">
+            <div class="parallax-bg"></div>
+            <img src="lightning.svg" class="parallax-mid" alt="decoration">
+            
+            <div class="hero_content parallax-front">
                 <div class="main_text_in_photo">Welcome to Boosted USA</div>
                 <div class="sub_text_in_photo">The Holy Grail of Electric Skateboards and One REVelutionary Scooter</div>
                 
@@ -66,7 +77,7 @@
             </div>
         </div>
 
-        <div class="line_under_first_hero_photo">
+        <div class="line_under_first_hero_photo animate-on-scroll">
             <div class="logos_block_in_line">
                 <img src="electrek.svg" alt="Electrek">
                 <img src="techcrunch.svg" alt="TechCrunch">
@@ -75,8 +86,7 @@
             </div>
         </div>
 
-       <div class="looking_for_section">
-            
+        <div class="looking_for_section animate-on-scroll">
             <div class="text_block_above_photos_in_looking_for">
                 <div class="title_in_looking_for">Looking for Boosted Boards, or Boosted Revs?</div>
                 <div class="paragraph_in_looking_for">Boosted USA acquired all of the remaining inventory directly from Boosted.  This means we have the electric skateboards and scooter you all love and have been looking for.  Get your hands on these highly sought after products while supplies last.</div>
@@ -101,7 +111,7 @@
             </div>
         </div>
 
-        <div class="scaters_section">
+        <div class="scaters_section animate-on-scroll">
             <div class="text_block_in_scaters">
                 <div class="top_small_text_in_scaters">High-performance</div>
                 <div class="main_title_in_scaters">Electric Skateboards</div>
@@ -111,8 +121,7 @@
             </div>
         </div>
 
-        <div class="collagge_section">
-            
+        <div class="collagge_section animate-on-scroll">
             <div class="top_row_in_collagge">
                 <img src="photo1.jpg" alt="Boosted Rev Scooter" class="top_photo_in_collagge">
                 <img src="photo2.jpg" alt="Scooter Display" class="top_photo_in_collagge">
@@ -125,7 +134,6 @@
             </div>
 
             <div class="bottom_row_in_collagge">
-                
                 <div class="bottom_photo_in_collagge photo3_bg_in_collagge">
                     <div class="photo_title_in_collagge">Shop Boosted Stealth</div>
                     <div class="photo_subtitle_in_collagge">IN STOCK</div>
@@ -140,94 +148,138 @@
                     <div class="photo_title_in_collagge">Shop Boosted Mini</div>
                     <div class="photo_subtitle_in_collagge">IN STOCK</div>
                 </div>
-
             </div>
-            
         </div>
 
-        <div class="youtube_section">
+        <div class="youtube_section animate-on-scroll">
             <div class="video_container_in_youtube">
-                <img src="youtube1.jpg" alt="Video 1" class="video_preview_in_youtube">
+                <!-- Триггер для вызова видео в модальном окне -->
+                <img src="youtube1.jpg" alt="Video 1" class="video_preview_in_youtube" id="video-trigger" style="cursor: pointer;">
                 <img src="youtube2.jpg" alt="Video 2" class="video_preview_in_youtube">
             </div>
         </div>
 
-        <div class="accessories_section">
+        <!-- Видео Модальное окно (ЛР №9) -->
+        <div class="modal-overlay" id="videoModal">
+            <div class="modal-content" style="max-width: 800px; width: 100%; background: #000; padding: 0;">
+                <span class="modal-close" style="color: white; right: -30px; top: -30px;">&times;</span>
+                <iframe width="100%" height="450" src="https://www.youtube.com/embed/a7R611k1fRs" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Интерактивная Медиагалерея (ЛР №9) -->
+        <div id="gallery-anchor" class="media-gallery animate-on-scroll" style="text-align: center; margin: 60px 0;">
+            <div class="title_block_in_accessories">
+                <div class="title_text_in_accessories" style="font-size: 28px;">Interactive Sound Gallery</div>
+                <div class="grey_line_in_accessories"></div>
+            </div>
+            <p style="color: #777; margin-bottom: 20px; font-family: Roboto;">Click on the images below to change them and hear a unique sound.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+                <img src="board.jpg" width="250" height="250" class="media-item" style="object-fit: cover; cursor: pointer; border-radius: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <img src="scooter.jpg" width="250" height="250" class="media-item" style="object-fit: cover; cursor: pointer; border-radius: 10px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            </div>
+            
+            <div class="gallery-controls" style="margin-top: 30px; display: flex; justify-content: center; align-items: center; gap: 20px; font-family: Roboto;">
+                <span id="play-indicator" style="font-weight: bold; background: #FF5A45; color: white; padding: 8px 20px; border-radius: 20px; display: none;">Статус: Играет 🔊</span>
+                <label style="font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                    Громкость: 
+                    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
+                </label>
+            </div>
+        </div>
+
+        <!-- Секция аксессуаров переработанная под Swiper (ЛР №9) -->
+        <div id="accessories-anchor" class="accessories_section animate-on-scroll" style="padding-top: 50px;">
             <div class="title_block_in_accessories">
                 <div class="title_text_in_accessories">Looking for Accessories?</div>
                 <div class="grey_line_in_accessories"></div>
             </div>
 
-            <div class="slider_container_in_accessories">
-                <img src="left_arrow.svg" alt="Left" class="left_arrow_in_accessories">
+            <div class="slider_container_in_accessories" style="width: 100%; max-width: 1200px; margin: 0 auto; position: relative;">
+                <div class="swiper mySwiper" style="width: 100%; padding: 20px 40px;">
+                    <div class="swiper-wrapper">
+                        <!-- Карточки аксессуаров в слайдере -->
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast1.jpg" alt="Rev Tube" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Rev Tube</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$16.00</span>
+                                    <span class="red_price_in_accessories strike_in_accessories">$19.00</span>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="items_row_in_accessories">
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast1.jpg" alt="Rev Tube" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Rev Tube</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$16.00</span>
-                            <span class="red_price_in_accessories strike_in_accessories">$19.00</span>
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast2.jpg" alt="Stem Catch" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Boosted Rev Stem Catch</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$19.00</span>
+                                    <span class="red_price_in_accessories strike_in_accessories">$29.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast3.jpg" alt="Fender" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Stomp Brake Fender</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="sold_out_in_accessories">Sold Out</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast4.jpg" alt="Belt Kit" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Boosted Belt Kit</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$25.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast5.jpg" alt="Bearing Kit" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Bearing Service Kit</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$50.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast6.jpg" alt="Pulley Kit" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Boosted Pulley / Belt Upgrade Kit</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$75.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide" style="display: flex; justify-content: center;">
+                            <div class="item_card_in_accessories">
+                                <img src="zapchast7.jpg" alt="Skid Plates" class="item_photo_in_accessories">
+                                <div class="item_name_in_accessories">Boosted Skid Plates</div>
+                                <div class="price_box_in_accessories">
+                                    <span class="black_price_in_accessories">$20.00</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast2.jpg" alt="Stem Catch" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Boosted Rev Stem Catch</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$19.00</span>
-                            <span class="red_price_in_accessories strike_in_accessories">$29.00</span>
-                        </div>
-                    </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast3.jpg" alt="Fender" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Stomp Brake Fender</div>
-                        <div class="price_box_in_accessories">
-                            <span class="sold_out_in_accessories">Sold Out</span>
-                        </div>
-                    </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast4.jpg" alt="Belt Kit" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Boosted Belt Kit</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$25.00</span>
-                        </div>
-                    </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast5.jpg" alt="Bearing Kit" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Bearing Service Kit</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$50.00</span>
-                        </div>
-                    </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast6.jpg" alt="Pulley Kit" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Boosted Pulley / Belt Upgrade Kit</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$75.00</span>
-                        </div>
-                    </div>
-
-                    <div class="item_card_in_accessories">
-                        <img src="zapchast7.jpg" alt="Skid Plates" class="item_photo_in_accessories">
-                        <div class="item_name_in_accessories">Boosted Skid Plates</div>
-                        <div class="price_box_in_accessories">
-                            <span class="black_price_in_accessories">$20.00</span>
-                        </div>
-                    </div>
+                    <div class="swiper-button-next" style="color: #FF5A45;"></div>
+                    <div class="swiper-button-prev" style="color: #FF5A45;"></div>
                 </div>
-
-                <img src="right_arrow.svg" alt="Right" class="right_arrow_in_accessories">
             </div>
         </div>
 
-        <div class="black_features_block_in_final">
+        <div class="black_features_block_in_final animate-on-scroll">
             <div class="features_container_in_final">
-                
                 <div class="feature_item_in_final">
                     <img src="icon1.svg" alt="Go Fast" class="feature_icon_in_final">
                     <div class="feature_title_in_final">Go Fast</div>
@@ -251,12 +303,25 @@
                     <div class="feature_title_in_final">Built to Last!</div>
                     <div class="feature_desc_in_final">Boosted products are engineered to last for years and are extremely reliable.</div>
                 </div>
+            </div>
+        </div>
 
+        <!-- Геокарта (Яндекс Конструктор) -->
+        <div id="map-anchor" class="animate-on-scroll" style="width: 100%; text-align: center; padding: 50px 0; background: #f9f9f9;">
+            <div class="title_block_in_accessories">
+                <div class="title_text_in_accessories" style="font-size: 28px;">Our Store Location</div>
+                <div class="grey_line_in_accessories"></div>
+            </div>
+            <div style="max-width: 1200px; margin: 30px auto 0; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A7a1c43555db6509f7a7d4cf4826b8cb7d6e6ab6c3a10521e10220c3a8e1cb1f3&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
             </div>
         </div>
 
         <footer class="footer_section_in_final">
-            
+            <div style="width: 1200px; display: flex; justify-content: flex-end; margin: 0 auto 20px;">
+                <a href="#top" style="color: #FF5A45; font-family: Roboto; font-weight: bold; text-decoration: none; padding: 10px 20px; border: 2px solid #FF5A45; border-radius: 25px; transition: 0.3s;">↑ НАВЕРХ ↑</a>
+            </div>
+
             <div class="footer_top_container_in_final">
                 <div class="footer_logo_col_in_final">
                     <img src="logo_bottom.svg" alt="Boosted USA">
@@ -298,8 +363,14 @@
                     <img src="card8.svg" alt="Card" class="card_icon_in_final">
                 </div>
             </div>
-            
         </footer>
         
+        <!-- Контейнер для Тостов -->
+        <div id="toastContainer"></div>
+
+        <!-- Подключение скриптов -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- ЕДИНСТВЕННЫЙ СКРИПТ: УБРАЛИ APP.JS -->
+        <script src="script.js"></script>
     </body>
 </html>

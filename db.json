@@ -153,7 +153,7 @@
   ],
   "favorites": [
     {
-      "id": "1779635184759",
+      "id": "1780254300621",
       "name": "Evolve Diablo Carbon 2 in 1",
       "category": "Boards",
       "price": 2299,
@@ -163,7 +163,7 @@
       "inStock": true
     },
     {
-      "id": "1779635190086",
+      "id": "1780255731890",
       "name": "Evolve STOKE - X Skateboard",
       "category": "Boards",
       "price": 1399,
@@ -173,7 +173,52 @@
       "inStock": true
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "1780253933918",
+      "name": "Evolve STOKE - X Skateboard",
+      "category": "Boards",
+      "price": 1399,
+      "oldPrice": null,
+      "rating": 4.7,
+      "image": "scateboard3.png",
+      "inStock": true,
+      "quantity": 1
+    },
+    {
+      "id": "1780253936470",
+      "name": "Evolve STOKE - X Skateboard",
+      "category": "Boards",
+      "price": 1399,
+      "oldPrice": null,
+      "rating": 4.7,
+      "image": "scateboard3.png",
+      "inStock": true,
+      "quantity": 1
+    },
+    {
+      "id": "1780255729498",
+      "name": "Evolve Diablo Carbon 2 in 1",
+      "category": "Boards",
+      "price": 2299,
+      "oldPrice": null,
+      "rating": 4.9,
+      "image": "scateboard2.png",
+      "inStock": true,
+      "quantity": 1
+    },
+    {
+      "id": "1780255731034",
+      "name": "Evolve STOKE - X Skateboard",
+      "category": "Boards",
+      "price": 1399,
+      "oldPrice": null,
+      "rating": 4.7,
+      "image": "scateboard3.png",
+      "inStock": true,
+      "quantity": 1
+    }
+  ],
   "users": [
     {
       "id": "1779637709864",
